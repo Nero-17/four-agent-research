@@ -42,6 +42,14 @@ $four-agent-research Investigate whether the proposed policy is likely to achiev
 
 Codex may also select the skill automatically when a request clearly matches its description.
 
+## Long-Running Research Reports
+
+After each sustained research round, the skill uploads a standalone English LaTeX progress report to the Google Drive folder the user has designated for that project. Ordinary Q&A does not trigger an archive. When no folder or prior opt-out is known, it asks whether the user wants to configure one; declining skips file generation and upload without interrupting research or repeatedly asking.
+
+Reports use `<overall-title>-YYYY-MM-DD-<round>.tex`, for example `Erdos-Similarity-Problem-2026-09-05-2.tex`. The project title stays stable, the date uses the user's timezone, and the daily round number continues after existing or recorded rounds. Reports include objectives, reviewed progress, substantive results, failed routes, sources, a claim ledger, and next steps. Historical reports are never overwritten.
+
+This requires an authorized Drive connector or API. Selecting a report destination authorizes only new progress reports there, not broader Drive changes. Uploads are verified before success is reported; missing access or upload failures are disclosed. Personal folder settings stay in the project's context, not in this repository.
+
 ## Independence and Fallbacks
 
 When genuine subagent tools are available, the skill assigns Agents 1-3 to separate persistent subagent sessions. When they are unavailable, it runs clearly separated role passes and discloses that limitation. A simulated reviewer pass is never described as an independent agent.

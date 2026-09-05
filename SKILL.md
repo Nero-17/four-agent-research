@@ -102,11 +102,12 @@ Before final synthesis, verify that:
 
 Use this default sequence, adapting only when dependencies require it:
 
-1. Agent 0 frames the problem, evidence standard, and milestones.
+1. Agent 0 frames the problem, evidence standard, and milestones. For long-running research, resolve the report-folder preference under Long-Running Research Archive before the first round.
 2. Agent 1 and Agent 2 begin in parallel when Agent 2 can independently attack the core question; otherwise Agent 1 goes first and Agent 2 receives its ranked conjectures.
 3. Agent 3 first receives the original brief and evaluation criteria, forms its own review checklist and search plan, and only then receives the evidence map, Agent 2's work, and raw supporting artifacts. It never receives Agent 0's tentative conclusion before review.
 4. Agent 0 applies the adoption gate and adjudicates by evidence, not votes.
 5. Run targeted repair-and-review iterations only while their expected value is material, then stop with a clear unresolved-gap statement.
+6. After a long-running research round, complete the English TeX archive procedure below when the user has enabled it.
 
 ## Report to the User
 
@@ -122,3 +123,29 @@ Lead with the useful answer, then provide a compact audit trail containing:
 8. **Uncertainty and next decisive step**
 
 Attribute substantive contributions to the correct agent. Do not dump internal transcripts or hidden chain-of-thought, and do not imply unanimity when disagreement remains. Keep the audit fields, but merge headings for small tasks when that improves clarity; rigor does not require unnecessary length.
+
+## Long-Running Research Archive
+
+### Scope and Destination
+
+This archive applies only to sustained research rounds: extended investigation, proof or falsification work, experiments, or scheduled research iterations undertaken to advance a project, whether or not they succeed. Ordinary questions, explanations, quick lookups, and brief follow-up answers do not trigger it, even when they use the four roles. Do not classify work by response length alone.
+
+Before the first applicable round, check the current project's instructions and prior user decisions for a Google Drive report folder or an explicit opt-out. If neither exists, ask whether the user wants to set a report folder and, if so, request its link or folder ID. A folder explicitly designated for these reports authorizes creating new progress reports there, subject to active permissions; an unrelated Drive link is not a report destination. Reuse this choice for subsequent rounds in that project. Do not infer one project's destination or opt-out for another project.
+
+If the user declines, skip report-file generation and upload, continue the research normally, and do not ask again unless the user reopens the choice. The normal conversational answer still applies. If no answer has arrived, continue otherwise authorized research without uploading and state that archiving is not configured. Retain the folder or opt-out in existing project/task context when supported; do not claim cross-session persistence without a supported mechanism. Never put personal folder IDs or account details in this public skill.
+
+### English TeX Report
+
+When archiving is enabled, Agent 0 must create and upload one standalone English `.tex` progress report at the end of every long-running research round, including rounds with negative results, unresolved gaps, or blocked progress. Do not substitute a chat summary, Google Doc, or PDF for the TeX source.
+
+Start the report with the overall research title, long-term objective, this round's objective, and Agent 3's progress assessment under the Progress Estimate rules. Include the baseline and changes since the previous round, substantive results with reproducible proofs or methods, counterexamples and failed routes, sources, review findings, the claim ledger and status changes, remaining gaps, and the next decisive steps. Clearly distinguish proved, conditional, conjectural, and unverified results, and disclose simulated reviewer passes. Record the round's start/end timestamps and timezone. Use a complete LaTeX document with escaped special characters and self-contained references; check its structure and compile when a suitable compiler is available. If compilation is unavailable, say so without claiming it compiled.
+
+### Filename and Upload
+
+Use exactly `<overall-title>-YYYY-MM-DD-<round>.tex`, for example `Erdos-Similarity-Problem-2026-09-05-2.tex`. Keep the overall project title stable across rounds, not the current subproblem's title; replace only characters unsuitable for a filename. Use the round's completion date in the user's configured timezone, or UTC with an explicit note when no timezone is available.
+
+The round is a positive integer starting at 1 each day for that project in its designated folder. Before choosing it, list all pages of matching reports for that title and date and reconcile them with any known rounds in the current project context; use the next unused round after the highest existing or recorded round, not the file count. Do not restart at 1 merely because this is a new conversation. Reuse the same round when retrying the same report.
+
+Create a new file without overwriting, editing, or deleting historical reports. Recheck names immediately before upload. Google Drive can contain duplicate names, so a filename is not an atomic reservation: after creation, check for a concurrent naming collision and, if necessary, renumber only this round's newly created file after relisting. If a collision cannot be resolved safely, disclose it. After an uncertain upload response, check for an already-created report before retrying to avoid duplicate reports.
+
+Use the available authorized Drive connector or supported API. Verify the created file's ID, parent folder, filename, and readable TeX content before reporting success; include its Drive link in the final response. If tools, access, or upload verification are unavailable, state the exact limitation and do not claim the report was saved. An upload failure is not a user opt-out: preserve the prepared report in an allowed accessible location when possible and report the remaining upload step. Do not switch folders, change sharing permissions, or bypass authorization.
