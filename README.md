@@ -65,6 +65,23 @@ $four-agent-research Continue this project and choose the research mode from the
 
 Every end-of-round report starts by naming the mode actually used, for example `本次研究模式：标准研究。` or `Research mode: Standard Research.` It also explains whether selection was explicit or automatic and why the round stopped. See [Research Modes](references/research-modes.md) for the mode-specific procedures.
 
+## Adaptive Reasoning Effort
+
+Effort is selected per subtask and phase, independently of the research mode or agent role:
+
+| Subtask | Automatic target |
+| --- | --- |
+| Routine retrieval, classification, fact extraction, or result organization | `high` |
+| Literature analysis, gap finding, conjectures, experiment design, or other substantive research reasoning | `xhigh` (default) |
+| Critical proofs, difficult counterexamples, core-conclusion review, or adjudication of substantive disagreement | `max` |
+| A precisely identified exceptionally difficult gap with a concrete promising next attempt and sufficient budget | `ultra`, when supported |
+
+User-specified settings and resource limits take precedence. Agent 0 reassesses reasoning complexity, the consequence of error, and the expected benefit of deeper reasoning at phase boundaries. Missing data, access, or compute is not a reason to blindly increase effort. Running a large numerical experiment campaign does not automatically require the highest reasoning effort.
+
+This is an adaptive policy, **not a hard runtime override**. The skill instructs the agent to use supported spawn or subsequent-turn controls and verify effective settings when available. Unsupported automatic targets fall back to compatible lower levels, such as `max` to `xhigh`, without changing the user's model. If controls or verification are unavailable, research can continue under existing settings with that limitation disclosed. The skill does not modify global configuration, change an already-running parent turn, or replace persistent agents merely to change effort.
+
+Reports preserve the mode-first opening, then distinguish target, requested, and verified effective effort, including unknown values and compatibility fallbacks. See [Reasoning Effort](references/reasoning-effort.md) for the decision procedure, runtime boundaries, and examples. These are research-workflow defaults, not a claim of experimentally optimal effort settings.
+
 ## Long-Running Research Reports
 
 After each sustained research round, the skill uploads a standalone English LaTeX progress report to the Google Drive folder the user has designated for that project. Ordinary Q&A does not trigger an archive. When no folder or prior opt-out is known, it asks whether the user wants to configure one; declining skips file generation and upload without interrupting research or repeatedly asking.
@@ -87,7 +104,8 @@ four-agent-research/
 |-- agents/
 |   `-- openai.yaml
 |-- references/
-|   `-- research-modes.md
+|   |-- research-modes.md
+|   `-- reasoning-effort.md
 |-- README.md
 `-- LICENSE
 ```

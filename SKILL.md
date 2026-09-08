@@ -39,13 +39,19 @@ Do not ask the user merely to choose a mode, run all three by default, or infer 
 
 Keep the chosen mode for the round. If its stopping condition is reached, report; do not silently restart under another mode. Reassess automatic selection at the next requested or already-authorized round, preserving any still-applicable user choice.
 
+## Adaptive Reasoning Effort
+
+Agent 0 selects effort per subtask and phase, not once for the whole research mode or permanently by agent role. Default to `xhigh` (Extra High) for substantive research reasoning; use `high` for routine retrieval and organization, `max` for critical advancement and review, and `ultra` only for a precisely identified difficult gap with a concrete promising next attempt and sufficient budget. Explicit user choices and resource limits take precedence.
+
+Before delegation and at meaningful phase boundaries, read [Reasoning Effort](references/reasoning-effort.md), select the target, apply it through available supported runtime controls, and distinguish the requested effort from any verified effective effort. A Skill instruction is not itself a runtime setting. If control or verification is unavailable, disclose that limitation and continue under the existing settings when permitted; never claim a switch occurred. Do not alter global configuration, switch models, or create extra conversations merely to enforce this policy.
+
 ## Agent 0: Lead Researcher
 
 Agent 0 owns the full result and is accountable to the user for the other agents' work.
 
 1. Frame the long-term objective when one exists and the exact objective for this run. For a one-shot question, use the user's requested outcome as the objective without inventing a larger project.
 2. Before seeing results, establish domain-appropriate standards of evidence and an outcome-based weighted milestone list for measuring progress toward the user's goal.
-3. Delegate bounded, role-specific briefs to Agents 1-3. Give them the question, scope, definitions, raw materials, and required output format. Avoid accidental duplicate work, while requiring deliberate overlap for independent verification.
+3. Delegate bounded, role-specific briefs to Agents 1-3. Give them the question, scope, definitions, raw materials, required output format, and the phase's effort target selected under Adaptive Reasoning Effort. Apply and verify supported runtime settings rather than relying on the brief alone. Avoid accidental duplicate work, while requiring deliberate overlap for independent verification.
 4. Keep Agent 3 independent: do not give it Agent 0's preferred conclusion or tentative synthesis before its review.
 5. Integrate the agents' work, resolve disagreements, and apply the adoption gate below before accepting any material claim.
 6. Request focused repair and re-review only while another iteration is likely to change a material conclusion. Bound retries according to time, cost, and risk; expose unresolved gaps instead of iterating ceremonially.
@@ -122,18 +128,18 @@ Before final synthesis, verify that:
 
 Use this default sequence, adapting only when dependencies require it:
 
-1. Agent 0 frames the problem, evidence standard, and milestones, selects the research mode under Research Mode Selection, and reads its procedure. For long-running research, resolve the report-folder preference under Long-Running Research Archive before the first round.
+1. Agent 0 frames the problem, evidence standard, and milestones, selects the research mode under Research Mode Selection, and reads its procedure. Plan the initial per-subtask effort allocation under Adaptive Reasoning Effort. For long-running research, resolve the report-folder preference under Long-Running Research Archive before the first round.
 2. Agent 1 and Agent 2 begin in parallel when Agent 2 can independently attack the core question; otherwise Agent 1 goes first and Agent 2 receives its ranked conjectures.
 3. Agent 3 first receives the original brief and evaluation criteria, forms its own review checklist and search plan, and only then receives the evidence map, Agent 2's work, and raw supporting artifacts. It never receives Agent 0's tentative conclusion before review.
 4. Agent 0 applies the adoption gate and adjudicates by evidence, not votes.
-5. Carry out the selected mode's work and repair-and-review iterations until its stopping condition or an explicit limit is reached. Report the stopping reason and unresolved gaps.
+5. Carry out the selected mode's work and repair-and-review iterations until its stopping condition or an explicit limit is reached. Reassess effort at meaningful phase boundaries without treating higher effort as a substitute for missing resources or a new method. Report the stopping reason and unresolved gaps.
 6. After a long-running research round, complete the English TeX archive procedure below when the user has enabled it.
 
 ## Report to the User
 
 The first sentence of every end-of-round report to the user must identify the mode actually used, before any greeting, heading, result, or archive-status note. In Chinese, use exactly one of: "本次研究模式：启动研究。", "本次研究模式：标准研究。", or "本次研究模式：瓶颈研究。" In an English report, use "Research mode: Startup Research.", "Research mode: Standard Research.", or "Research mode: Bottleneck Research." Use an equivalent first sentence in another requested language.
 
-Then give the useful answer and a compact audit trail containing:
+After that opening, give the useful answer and the compact target/requested/effective effort summary defined in [Reasoning Effort](references/reasoning-effort.md). Include a compact audit trail containing:
 
 1. **Long-term objective**
 2. **This run's objective and mode**: whether the mode was user-specified or automatically selected, the selection basis, and the evidence-based stopping reason
@@ -158,7 +164,7 @@ If the user declines, skip report-file generation and upload, continue the resea
 
 ### English TeX Report
 
-When archiving is enabled, Agent 0 must create and upload one standalone English `.tex` progress report at the end of every long-running research round, including rounds with negative results, unresolved gaps, or blocked progress. Do not substitute a chat summary, Google Doc, or PDF for the TeX source.
+When archiving is enabled, Agent 0 must create and upload one standalone English `.tex` progress report at the end of every long-running research round, including rounds with negative results, unresolved gaps, or blocked progress. Do not substitute a chat summary, Google Doc, or PDF for the TeX source. Include the compact effort allocation and verification summary, disclosing unavailable controls or unknown effective settings.
 
 Place the overall research title first, then start the report body with the English research-mode sentence defined under Report to the User. Follow with the long-term objective, this round's objective, mode-selection basis and stopping reason, and Agent 3's progress assessment under the Progress Estimate rules. Include the baseline and changes since the previous round, substantive results with reproducible proofs or methods, counterexamples and failed routes, sources, review findings, the claim ledger and status changes, remaining gaps, and the next decisive steps. Clearly distinguish proved, conditional, conjectural, and unverified results, and disclose simulated reviewer passes. Record the round's start/end timestamps and timezone. Use a complete LaTeX document with escaped special characters and self-contained references; check its structure and compile when a suitable compiler is available. If compilation is unavailable, say so without claiming it compiled.
 

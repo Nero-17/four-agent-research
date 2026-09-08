@@ -1,4 +1,4 @@
 interface:
   display_name: "Four-Agent Research"
   short_description: "Rigorous four-agent research with three adaptive modes"
-  default_prompt: "Use $four-agent-research to investigate this question rigorously in my requested mode, or select Startup, Standard, or Bottleneck Research automatically, and name the mode in the report's first sentence."
+  default_prompt: "Use $four-agent-research to investigate this question rigorously, selecting the research mode and per-subtask reasoning effort automatically unless I specify them; name the mode first and distinguish requested from verified effective effort in the report."
