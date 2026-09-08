@@ -19,6 +19,26 @@ If true subagents are unavailable, perform three clearly separated role passes a
 - Preserve uncertainty. State what would change the conclusion and what remains unknown.
 - Keep all consequential external actions subject to the user's authorization and the active environment's permission rules.
 
+## Research Mode Selection
+
+For each research round, Agent 0 chooses one primary mode before delegating. These modes change the research strategy, not the four roles, evidence standards, adoption gate, or archive preference.
+
+| Mode | Accepted names | Main purpose |
+| --- | --- | --- |
+| Startup Research | 启动研究, Startup Research | Map the literature, identify gaps, and minimally probe every promising shortlisted direction. |
+| Standard Research | 标准研究, Standard Research | Advance an established question until marginal research benefit diminishes or a clear obstacle prevents useful progress. |
+| Bottleneck Research | 瓶颈研究, Bottleneck Research | Break a documented impasse through extensive numerical experiments, renewed broad literature search, and unconventional methods. |
+
+Honor the user's explicit mode for the current round, including an ongoing mode instruction that still applies. Otherwise select automatically from the request, available project materials, previous reports, and claim ledger:
+
+1. Choose **Bottleneck Research** when substantive prior attempts have repeatedly stalled, the same material obstacle persists, or established approaches are exhausted.
+2. Otherwise choose **Startup Research** for a new or substantially reframed topic without an adequate evidence map or tested candidate directions.
+3. Otherwise choose **Standard Research** when a precise question and a plausible next route are available. When context is inconclusive after a brief orientation, use this mode provisionally and state the uncertainty.
+
+Do not ask the user merely to choose a mode, run all three by default, or infer a bottleneck from one failed attempt or missing access alone. Read the selected mode's section in [Research Modes](references/research-modes.md) and include the mode, selection basis, work budget, and stopping criteria in the agents' briefs. Respect explicit time, cost, compute, access, and scope constraints. If required search or experiment tools are unavailable, disclose the limitation instead of claiming that work was performed.
+
+Keep the chosen mode for the round. If its stopping condition is reached, report; do not silently restart under another mode. Reassess automatic selection at the next requested or already-authorized round, preserving any still-applicable user choice.
+
 ## Agent 0: Lead Researcher
 
 Agent 0 owns the full result and is accountable to the user for the other agents' work.
@@ -49,7 +69,7 @@ Agent 1 must not present a plausible narrative as a settled conclusion.
 
 Agent 2 turns the strongest candidate claims into concrete, checkable progress.
 
-- Select the highest-value tractable claim, explaining the choice.
+- In Standard Research, select the highest-value tractable claim, explaining the choice. In Startup Research, probe every promising shortlisted direction; in Bottleneck Research, pursue the selected experiment-and-method campaign.
 - Attempt a proof, derivation, calculation, experiment, implementation, case analysis, data test, counterexample, or other domain-appropriate check.
 - Actively try to falsify the claim and test hidden assumptions, extreme cases, and rival explanations.
 - Make the work reproducible with stated inputs, assumptions, methods, auditable derivations or code, and relevant outputs. Do not reveal or request hidden chain-of-thought.
@@ -102,19 +122,21 @@ Before final synthesis, verify that:
 
 Use this default sequence, adapting only when dependencies require it:
 
-1. Agent 0 frames the problem, evidence standard, and milestones. For long-running research, resolve the report-folder preference under Long-Running Research Archive before the first round.
+1. Agent 0 frames the problem, evidence standard, and milestones, selects the research mode under Research Mode Selection, and reads its procedure. For long-running research, resolve the report-folder preference under Long-Running Research Archive before the first round.
 2. Agent 1 and Agent 2 begin in parallel when Agent 2 can independently attack the core question; otherwise Agent 1 goes first and Agent 2 receives its ranked conjectures.
 3. Agent 3 first receives the original brief and evaluation criteria, forms its own review checklist and search plan, and only then receives the evidence map, Agent 2's work, and raw supporting artifacts. It never receives Agent 0's tentative conclusion before review.
 4. Agent 0 applies the adoption gate and adjudicates by evidence, not votes.
-5. Run targeted repair-and-review iterations only while their expected value is material, then stop with a clear unresolved-gap statement.
+5. Carry out the selected mode's work and repair-and-review iterations until its stopping condition or an explicit limit is reached. Report the stopping reason and unresolved gaps.
 6. After a long-running research round, complete the English TeX archive procedure below when the user has enabled it.
 
 ## Report to the User
 
-Lead with the useful answer, then provide a compact audit trail containing:
+The first sentence of every end-of-round report to the user must identify the mode actually used, before any greeting, heading, result, or archive-status note. In Chinese, use exactly one of: "本次研究模式：启动研究。", "本次研究模式：标准研究。", or "本次研究模式：瓶颈研究。" In an English report, use "Research mode: Startup Research.", "Research mode: Standard Research.", or "Research mode: Bottleneck Research." Use an equivalent first sentence in another requested language.
+
+Then give the useful answer and a compact audit trail containing:
 
 1. **Long-term objective**
-2. **This run's objective**
+2. **This run's objective and mode**: whether the mode was user-specified or automatically selected, the selection basis, and the evidence-based stopping reason
 3. **Agent 3 progress assessment**: percentage and range, confidence, and basis, or `not estimable`
 4. **Agent 0 synthesis**: answer and recommended interpretation or decision
 5. **Evidence and advancement**: the strongest sources and Agent 2's concrete result
@@ -138,7 +160,7 @@ If the user declines, skip report-file generation and upload, continue the resea
 
 When archiving is enabled, Agent 0 must create and upload one standalone English `.tex` progress report at the end of every long-running research round, including rounds with negative results, unresolved gaps, or blocked progress. Do not substitute a chat summary, Google Doc, or PDF for the TeX source.
 
-Start the report with the overall research title, long-term objective, this round's objective, and Agent 3's progress assessment under the Progress Estimate rules. Include the baseline and changes since the previous round, substantive results with reproducible proofs or methods, counterexamples and failed routes, sources, review findings, the claim ledger and status changes, remaining gaps, and the next decisive steps. Clearly distinguish proved, conditional, conjectural, and unverified results, and disclose simulated reviewer passes. Record the round's start/end timestamps and timezone. Use a complete LaTeX document with escaped special characters and self-contained references; check its structure and compile when a suitable compiler is available. If compilation is unavailable, say so without claiming it compiled.
+Place the overall research title first, then start the report body with the English research-mode sentence defined under Report to the User. Follow with the long-term objective, this round's objective, mode-selection basis and stopping reason, and Agent 3's progress assessment under the Progress Estimate rules. Include the baseline and changes since the previous round, substantive results with reproducible proofs or methods, counterexamples and failed routes, sources, review findings, the claim ledger and status changes, remaining gaps, and the next decisive steps. Clearly distinguish proved, conditional, conjectural, and unverified results, and disclose simulated reviewer passes. Record the round's start/end timestamps and timezone. Use a complete LaTeX document with escaped special characters and self-contained references; check its structure and compile when a suitable compiler is available. If compilation is unavailable, say so without claiming it compiled.
 
 ### Filename and Upload
 

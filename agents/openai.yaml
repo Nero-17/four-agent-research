@@ -1,4 +1,4 @@
 interface:
   display_name: "Four-Agent Research"
-  short_description: "Rigorous four-agent evidence, advancement, and review"
-  default_prompt: "Use $four-agent-research to investigate this question through evidence gathering, concrete advancement, independent review, and accountable synthesis."
+  short_description: "Rigorous four-agent research with three adaptive modes"
+  default_prompt: "Use $four-agent-research to investigate this question rigorously in my requested mode, or select Startup, Standard, or Bottleneck Research automatically, and name the mode in the report's first sentence."
