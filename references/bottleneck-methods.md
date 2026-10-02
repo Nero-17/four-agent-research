@@ -4,6 +4,8 @@ Use this protocol when research reaches a documented bottleneck, in solo or four
 
 ## Map Directions Before Focusing
 
+Use [Shared Research Identifiers](research-identifiers.md) throughout this ledger, including `direction-000`, `problem-000`, `gap-000`, and `experiment-000` where applicable, while retaining the `method-001` starting rule below.
+
 State the exact target and bottleneck. Organize a bounded, explicitly scoped map of **major directions**, each containing distinct **concrete methods**. A direction is a broad approach; a method is a specific mechanism for overcoming the obstacle. Explain the connection, required assumptions, missing lemma or resource, and cheapest discriminating test. New methods may be added with provenance; never claim to have enumerated every conceivable method.
 
 Maintain stable direction/method IDs and a ledger containing: target and scope; method mechanism; assumptions and dependencies; attempted tests and actual outcomes; precise failure or remaining gap; stage; viability estimate and uncertainty; evidence for the estimate; disposition; and the evidence that would justify reopening it. Keep earlier estimates and reasons when revising judgments. This is separate from the claim ledger: suspending a method does not refute its target theorem.

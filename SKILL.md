@@ -28,6 +28,10 @@ Save tokens in solo execution by avoiding delegation briefs, repeated context tr
 - In mathematical proofs, do not introduce unnecessary abbreviation variables. Distinguish proof, conditional results, finite computational support, conjectures, and unresolved gaps.
 - Keep all consequential external actions subject to the user's authorization and the active environment's permission rules.
 
+## Shared Research Identifiers
+
+Read [Shared Research Identifiers](references/research-identifiers.md) when starting or resuming research. Automatically number rounds from `round-000`, conjectures from `conjecture-000`, theorems from `theorem-000`, and other material objects by their documented type. Preserve the existing `method-001` starting rule. Each prefix has one persistent project-wide sequence, shared by solo and four-agent execution. Reuse IDs throughout conversation, ledgers, archives, and progress summaries; never reset or recycle them. Keep historical labels as aliases rather than renumbering archives. A proved conjecture retains its ID and links to its result ID; a changed status never silently rewrites its history. IDs organize records and are not extra abbreviation variables in mathematical proofs.
+
 ## Research Mode Selection
 
 For each research round, choose one primary research strategy after selecting solo or four-agent execution. Strategy does not override execution mode, evidence standards, the applicable review gate, or archiving rules.

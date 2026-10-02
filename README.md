@@ -106,11 +106,27 @@ Every concrete method receives a stable ID: `method-001`, `method-002`, etc. Num
 
 These are subjective feasibility thresholds under stated assumptions and resources, not measured probabilities or proofs of impossibility. Exact threshold values are not below threshold; uncertain, untested, or resource-blocked methods cannot count as eliminated. Exhausting a scoped map does not prove that all possible approaches fail. Both stages respect the current budget and round identity. See [Direction and Method Search](references/bottleneck-methods.md).
 
+## Standard Research IDs
+
+Both execution modes automatically assign stable project-wide identifiers:
+
+| Object | Starting ID |
+| --- | --- |
+| Research round | `round-000` |
+| Problem / direction | `problem-000` / `direction-000` |
+| Concrete method | `method-001` (existing convention retained) |
+| Conjecture / theorem | `conjecture-000` / `theorem-000` |
+| Proposition / lemma / corollary | `proposition-000` / `lemma-000` / `corollary-000` |
+| Definition / general claim | `definition-000` / `claim-000` |
+| Experiment / counterexample / gap | `experiment-000` / `counterexample-000` / `gap-000` |
+
+Each prefix has its own sequence, continued across conversations, rounds, and execution modes. IDs are used in updates, ledgers, archives, and the latest-progress file, without generating unused categories. A conjecture that is proved keeps its original ID and links to the new theorem or lemma ID and the same proof. Withdrawals and corrections preserve IDs and update status; a label alone does not establish a proof. Existing records retain their labels and file names with aliases as needed. See [Shared Research Identifiers](references/research-identifiers.md).
+
 ## Long-Running Research Records
 
 In either execution mode, one continuous work session exceeding 30 minutes of real wall-clock time requires a complete Google Drive record. Two hours of continuous work remains one round. Subtasks, updates, compaction, and automatic continuations do not reset the clock, and user absence between completed runs does not count. Do not prolong work to reach the threshold.
 
-Use the corresponding project folder, creating a clearly named one if absent. Continue existing project round numbers across dates and conversations. Each round has one authoritative Markdown or Google Doc in the established format, for example `主题_R045_YYYY-MM-DD_完整研究记录`; all checkpoint, final, and correction saves update the same Drive file ID. Essential attachments may instead be bundled with the full report into one ZIP. Historical archives are not automatically migrated or renumbered.
+Use the corresponding project folder, creating a clearly named one if absent. New project rounds start at `round-000`; continue existing project round numbers across dates and conversations. Each archived round has one authoritative Markdown or Google Doc in the established format, for example `主题_round-045_YYYY-MM-DD_完整研究记录`; all checkpoint, final, and correction saves update the same Drive file ID. Essential attachments may instead be bundled with the full report into one ZIP. Historical archives are not automatically migrated or renumbered.
 
 Keep a single persistent `00_最新进展` (or existing equivalent) in the project root. Read it first when resuming research. Initialize it with the current state, then update the same file only for major advances, decisive counterexamples, key proofs, or substantial withdrawals/corrections. It links to the supporting round records and distinguishes proof, conditional results, finite computational support, conjectures, and open gaps.
 
@@ -133,6 +149,7 @@ four-agent-research/
 |   |-- research-modes.md
 |   |-- reasoning-effort.md
 |   |-- bottleneck-methods.md
+|   |-- research-identifiers.md
 |   `-- research-archive.md
 |-- README.md
 `-- LICENSE
