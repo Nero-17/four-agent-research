@@ -108,6 +108,8 @@ These are subjective feasibility thresholds under stated assumptions and resourc
 
 ## Standard Research IDs
 
+The project also maintains an actual `01_方法状态.xlsx` in its Drive root. Each method (`method-001` onward) occupies one row with its name, direction, current status, explicit **已进入第一阶段放弃** flag, first suspension round, second-stage decision, feasibility assessment, evidence, and next step. A history sheet preserves transitions: reopening a method in stage 2 does not erase its stage-1 suspension. Update the same workbook/file ID when methods change, independently of whether the round produced a breakthrough. This tracker is shared by both execution modes and complements the complete round archive. See [Persistent Excel Method Tracker](references/method-workbook.md).
+
 Both execution modes automatically assign stable project-wide identifiers:
 
 | Object | Starting ID |
@@ -150,6 +152,7 @@ four-agent-research/
 |   |-- reasoning-effort.md
 |   |-- bottleneck-methods.md
 |   |-- research-identifiers.md
+|   |-- method-workbook.md
 |   `-- research-archive.md
 |-- README.md
 `-- LICENSE

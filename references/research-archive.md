@@ -34,6 +34,8 @@ Record auditable arguments and a work summary, not private internal reasoning tr
 
 ## A Persistent Latest-Progress File
 
+Also maintain the project-root `01_方法状态.xlsx` according to [Persistent Excel Method Tracker](method-workbook.md). This user-requested living project tracker is separate from the one-full-record-per-round rule, like the latest-progress overview. Update its existing file ID for method changes without creating per-round Excel copies; link it from the overview and relevant round records. Method-status updates do not by themselves count as a major research breakthrough requiring a rewrite of the overview.
+
 Keep one project-root file named `00_最新进展`, in the established Markdown or Google Doc format. Reuse an existing equivalent rather than creating a duplicate. Initialize it with the current research state when first establishing the project archive.
 
 After that, update the same file ID only for substantive changes: solving a core problem, proving a key theorem, obtaining a decisive counterexample, materially removing a central obstacle, or withdrawing/correcting a principal argument. Repeated checking and ordinary local progress are not breakthroughs. A major withdrawal must be reflected so the overview does not retain misleading claims.

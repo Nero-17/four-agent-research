@@ -54,6 +54,8 @@ Keep the chosen mode for the round. If its stopping condition is reached, report
 
 ## Bottleneck Direction and Method Ledger
 
+When concrete methods are first recorded, read [Persistent Excel Method Tracker](references/method-workbook.md). Create or reuse one project-root `01_方法状态.xlsx`, with one row per method ID, current disposition, explicit first-stage abandonment flag, second-stage decision, evidence, and related round IDs. Update the same workbook and Drive file ID as methods change; preserve transition history within it. This actual Excel tracker is shared by solo and four-agent execution and complements the round archive and latest-progress file.
+
 Number every concrete method `method-001`, `method-002`, etc. in one project-wide sequence across directions. Continue existing numbering across rounds and conversations; keep the same ID when suspending or reopening a method, and never reuse retired IDs. Use these IDs in research records and reports; see the reference below for variants and legacy labels.
 
 When bottleneck investigation is needed, read [Direction and Method Search](references/bottleneck-methods.md). Map major directions and concrete methods beneath them, then focus on one decisive method-level obstacle at a time. Stage 1 suspends a method only on an evidence-backed subjective viability estimate strictly below 5%. Only when all mapped methods have been suspended or rigorously excluded does stage 2 revisit them with a strictly-below-1% threshold. Untested, blocked, or uncertain methods are not eliminated. Estimates are resource- and scope-dependent judgments, never proofs of impossibility; preserve attempts, reasons, uncertainty, and reopening conditions in the ledger. Both stages remain within the current round and budget.

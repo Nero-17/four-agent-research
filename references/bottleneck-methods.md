@@ -4,6 +4,8 @@ Use this protocol when research reaches a documented bottleneck, in solo or four
 
 ## Map Directions Before Focusing
 
+Maintain the project-level [Excel method tracker](method-workbook.md) alongside this ledger. Each method has one current row, including whether it has entered first-stage suspension; preserve previous suspension events when entering stage 2.
+
 Use [Shared Research Identifiers](research-identifiers.md) throughout this ledger, including `direction-000`, `problem-000`, `gap-000`, and `experiment-000` where applicable, while retaining the `method-001` starting rule below.
 
 State the exact target and bottleneck. Organize a bounded, explicitly scoped map of **major directions**, each containing distinct **concrete methods**. A direction is a broad approach; a method is a specific mechanism for overcoming the obstacle. Explain the connection, required assumptions, missing lemma or resource, and cheapest discriminating test. New methods may be added with provenance; never claim to have enumerated every conceivable method.
