@@ -1,10 +1,21 @@
 # Four-Agent Research
 
-A reusable Codex skill for rigorous research and reasoning through four distinct roles: leadership, evidence mapping, concrete advancement, and independent review.
+A reusable Codex skill for rigorous research and reasoning, with four-agent execution by default and ordinary single-researcher execution when you request no subagents.
 
 It is designed for complex scientific, technical, policy, strategic, historical, and other questions where a plausible answer is not enough. The workflow tracks material claims, tests conjectures, searches for disconfirming evidence, and distinguishes verified progress from effort.
 
-## Roles
+## Solo Research / 单人研究
+
+Say `不要 sub agent`, `单独工作`, or `work alone` to keep all work with the current agent. This takes precedence over the default four-agent workflow, even when delegation tools are available. No helpers, extra tasks, or simulated agent personas are created. Evidence gathering, substantive advancement, and explicitly labeled self-review remain required; self-review is not independent validation.
+
+Solo execution defaults to Standard Research and can also use Startup or Bottleneck Research as the question requires. Execution mode and research strategy are separate choices.
+
+```text
+$four-agent-research 不要 sub agent，单独研究这个问题；遵守逐轮归档和最新进展规则。
+$four-agent-research 单人瓶颈研究：先整理大方向及各自方法，逐项尝试，按 5% / 1% 两阶段规则推进。
+```
+
+## Roles (Four-Agent Execution)
 
 - **Agent 0: Lead Researcher** frames the question, delegates work, adjudicates disagreements, and owns the final answer.
 - **Agent 1: Evidence and Conjectures** maps the literature and evidence, reconciles definitions, and proposes testable claims.
@@ -82,19 +93,30 @@ This is an adaptive policy, **not a hard runtime override**. The skill instructs
 
 Reports preserve the mode-first opening, then distinguish target, requested, and verified effective effort, including unknown values and compatibility fallbacks. See [Reasoning Effort](references/reasoning-effort.md) for the decision procedure, runtime boundaries, and examples. These are research-workflow defaults, not a claim of experimentally optimal effort settings.
 
-## Long-Running Research Reports
+## Bottleneck Search: Directions, Methods, and Two Stages
 
-After each sustained research round, the skill uploads a standalone English LaTeX progress report to the Google Drive folder the user has designated for that project. Ordinary Q&A does not trigger an archive. When no folder or prior opt-out is known, it asks whether the user wants to configure one; declining skips file generation and upload without interrupting research or repeatedly asking.
+Map major directions and the concrete methods under each, then focus on one method's decisive obstacle at a time. Record actual tests, outcomes, assumptions, remaining gaps, subjective viability estimates, uncertainty, and reopening conditions.
 
-Reports use `<overall-title>-YYYY-MM-DD-<round>.tex`, for example `Erdos-Similarity-Problem-2026-09-05-2.tex`. The project title stays stable, the date uses the user's timezone, and the daily round number continues after existing or recorded rounds. The report body starts with the English research-mode sentence and includes objectives, the mode-selection basis and stopping reason, reviewed progress, substantive results, failed routes, sources, a claim ledger, and next steps. Historical reports are never overwritten.
+- **Stage 1:** suspend a method when evidence supports a chance of resolving the scoped target **below 5%**. Sweep the mapped methods across all scoped directions.
+- **Stage 2:** only after every mapped method is suspended or rigorously excluded, revisit stage-1 methods using **below 1%** as the suspension threshold. Methods at 1–5% can still be pursued. Reassessment needs a meaningful new test or re-examination of the earlier evidence, not identical repetitions.
 
-This requires an authorized Drive connector or API. Selecting a report destination authorizes only new progress reports there, not broader Drive changes. Uploads are verified before success is reported; missing access or upload failures are disclosed. Personal folder settings stay in the project's context, not in this repository.
+These are subjective feasibility thresholds under stated assumptions and resources, not measured probabilities or proofs of impossibility. Exact threshold values are not below threshold; uncertain, untested, or resource-blocked methods cannot count as eliminated. Exhausting a scoped map does not prove that all possible approaches fail. Both stages respect the current budget and round identity. See [Direction and Method Search](references/bottleneck-methods.md).
+
+## Long-Running Research Records
+
+In either execution mode, one continuous work session exceeding 30 minutes of real wall-clock time requires a complete Google Drive record. Two hours of continuous work remains one round. Subtasks, updates, compaction, and automatic continuations do not reset the clock, and user absence between completed runs does not count. Do not prolong work to reach the threshold.
+
+Use the corresponding project folder, creating a clearly named one if absent. Continue existing project round numbers across dates and conversations. Each round has one authoritative Markdown or Google Doc in the established format, for example `主题_R045_YYYY-MM-DD_完整研究记录`; all checkpoint, final, and correction saves update the same Drive file ID. Essential attachments may instead be bundled with the full report into one ZIP. Historical archives are not automatically migrated or renumbered.
+
+Keep a single persistent `00_最新进展` (or existing equivalent) in the project root. Read it first when resuming research. Initialize it with the current state, then update the same file only for major advances, decisive counterexamples, key proofs, or substantial withdrawals/corrections. It links to the supporting round records and distinguishes proof, conditional results, finite computational support, conjectures, and open gaps.
+
+Records include timing, conversation source, objectives, auditable arguments, verification evidence, failed routes, corrections, exact remaining gaps, and next steps. Mathematical proofs avoid unnecessary abbreviation variables. Archive at an actionable checkpoint after crossing the threshold, finalize and verify at the end, and return the round identity and Drive link. Routine archiving is authorized by this workflow; explicit no-upload instructions override it. If Drive is unavailable, retain the complete record locally and say **尚未上传 / not uploaded**, without claiming success or creating a scheduled job. Personal folder IDs stay outside this public repository. See [Project Archives and Latest Progress](references/research-archive.md).
 
 ## Independence and Fallbacks
 
-When genuine subagent tools are available, the skill assigns Agents 1-3 to separate persistent subagent sessions. When they are unavailable, it runs clearly separated role passes and discloses that limitation. A simulated reviewer pass is never described as an independent agent.
+In four-agent execution, use three persistent subagent sessions when genuine delegation is available and authorized; otherwise disclose separate role passes as a fallback. An explicit solo request instead uses normal single-researcher work and labeled self-review. Neither self-review nor simulated passes are independent-agent validation.
 
-Using the skill authorizes research delegation only. It does not authorize publication, purchases, account changes, external writes, or other consequential actions.
+The skill authorizes its selected research execution and routine project archiving, subject to active permissions and user choices. It does not authorize unrelated publication, purchases, account changes, or other external mutations.
 
 ## Files
 
@@ -105,7 +127,9 @@ four-agent-research/
 |   `-- openai.yaml
 |-- references/
 |   |-- research-modes.md
-|   `-- reasoning-effort.md
+|   |-- reasoning-effort.md
+|   |-- bottleneck-methods.md
+|   `-- research-archive.md
 |-- README.md
 `-- LICENSE
 ```

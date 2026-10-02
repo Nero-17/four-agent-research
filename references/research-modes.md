@@ -1,6 +1,6 @@
 # Research Modes
 
-Read the section for the selected mode. All modes retain the SKILL.md review, claim-ledger, progress-estimation, and authorization requirements. Broader exploration never lowers the evidentiary standard.
+Read the section for the selected mode. All modes retain the SKILL.md review, claim-ledger, progress-estimation, and authorization requirements. Broader exploration never lowers the evidentiary standard. Execution mode is separate: in Solo Research, one researcher performs these responsibilities and uses labeled self-review, with no delegation or simulated personas. All mentions of Agents 1–3 and simultaneous work below apply literally only to four-agent execution.
 
 ## Startup Research
 
@@ -28,6 +28,8 @@ Deliver the validated change from the baseline, attempted and failed routes, exa
 ## Bottleneck Research
 
 Objective: generate and discriminate new routes around a documented research obstacle.
+
+First read [Direction and Method Search](bottleneck-methods.md). Its scoped direction/method ledger, focused single-method attempts, and two-stage 5%/1% suspension rules govern this campaign. Broader searches and experiments below support the focal method and the map; they do not substitute for method-by-method discrimination. The viability thresholds are subjective assessments, not mathematical impossibility certificates.
 
 - Agent 0 states the precise bottleneck, failed approaches, and assumptions that may be relaxed. Plan a bounded but substantially broader experiment-and-search campaign than in Standard Research, reserving resources for verification rather than consuming everything on discovery.
 - Agent 2 performs extensive, systematic numerical or computational experiments to find patterns: vary parameters and scales, enumerate small cases, search for counterexamples, compare baselines, and repeat stochastic tests across seeds where relevant. Adapt successive batches to the observations. Record methods, inputs, code or reproducible procedures, precision, outputs, and null or contrary results. One token toy example is not an extensive campaign.

@@ -1,13 +1,17 @@
 ---
 name: four-agent-research
-description: Run a rigorous four-agent research workflow for complex questions that benefit from evidence gathering, testable conjectures, concrete advancement, adversarial verification, and accountable synthesis. Use across scientific, technical, policy, strategic, historical, or other research domains; do not use for simple lookups or routine execution.
+description: Conduct rigorous complex research with evidence mapping, concrete advancement, critical review, and staged bottleneck investigation, using four agents by default or one researcher when requested. Use across scientific, technical, policy, strategic, historical, or other research domains; do not use for simple lookups or routine execution.
 ---
 
 # Four-Agent Research
 
-Investigate the user's question through four distinct roles. Agent 0 is the current parent agent. When genuine subagent or delegation tools are available, create one persistent subagent session for each of Agents 1-3 and reuse it for follow-up work. Do not create user-visible tasks or conversations merely to simulate subagents. If a role session fails, Agent 0 may replace it once and must disclose the replacement. Invoking this skill authorizes those research delegations, but it does not authorize external writes, purchases, publication, account changes, or other consequential side effects.
+Select the execution mode **before any delegation**. Explicit instructions such as "不要 sub agent", "不要 agent", "单独工作", "单人研究", "no subagents", or "work alone" select **Solo Research / 单人研究**. This overrides every delegation, parallel-work, and independent-agent requirement below, including when subagent tools are available. Keep this choice until the user changes it; never spawn helpers, ask another task to do the work, or create conversations to bypass it.
 
-If true subagents are unavailable, perform three clearly separated role passes and disclose that fallback. Never pretend simulated passes were independent agents; label Agent 3's output as a separate reviewer pass rather than an independent-agent review.
+In Solo Research, the current agent conducts ordinary research: frame the question, gather evidence, develop and falsify arguments, check the result, and report it. Do not simulate four personas or produce fictional agent contributions. Read later role descriptions as responsibilities of this one researcher, not instructions to instantiate agents. Replace Agent 3 review and progress assessment with explicitly labeled **self-review**; this is not independent validation. Apply the adoption gate to a documented self-review, qualify unchecked claims, and preserve all evidence standards. Default to Standard Research unless the user selects another strategy or the documented project state warrants Startup or Bottleneck Research. Solo execution can use any of these three strategies.
+
+Otherwise investigate through four distinct roles. Agent 0 is the current parent agent. When genuine subagent or delegation tools are available and allowed, create one persistent subagent session for each of Agents 1-3 and reuse it for follow-up work. Do not create user-visible tasks or conversations merely to simulate subagents. If a role session fails, Agent 0 may replace it once and must disclose the replacement. Invoking this skill authorizes those research delegations unless the user opts for solo execution. Project archiving follows the authorization and destination rules below; other external writes, purchases, publication, account changes, and consequential side effects require their own authorization.
+
+If four-agent execution was selected but true subagents are unavailable, perform clearly separated role passes and disclose that fallback. This fallback does not apply to an explicit solo request. Never pretend simulated passes were independent agents.
 
 ## Shared Standard
 
@@ -17,11 +21,12 @@ If true subagents are unavailable, perform three clearly separated role passes a
 - Search for disconfirming evidence, boundary cases, alternative explanations, and counterexamples.
 - Do not treat agreement among agents as validation. Agent 0 adjudicates by evidence and valid reasoning.
 - Preserve uncertainty. State what would change the conclusion and what remains unknown.
+- In mathematical proofs, do not introduce unnecessary abbreviation variables. Distinguish proof, conditional results, finite computational support, conjectures, and unresolved gaps.
 - Keep all consequential external actions subject to the user's authorization and the active environment's permission rules.
 
 ## Research Mode Selection
 
-For each research round, Agent 0 chooses one primary mode before delegating. These modes change the research strategy, not the four roles, evidence standards, adoption gate, or archive preference.
+For each research round, choose one primary research strategy after selecting solo or four-agent execution. Strategy does not override execution mode, evidence standards, the applicable review gate, or archiving rules.
 
 | Mode | Accepted names | Main purpose |
 | --- | --- | --- |
@@ -38,6 +43,10 @@ Honor the user's explicit mode for the current round, including an ongoing mode 
 Do not ask the user merely to choose a mode, run all three by default, or infer a bottleneck from one failed attempt or missing access alone. Read the selected mode's section in [Research Modes](references/research-modes.md) and include the mode, selection basis, work budget, and stopping criteria in the agents' briefs. Respect explicit time, cost, compute, access, and scope constraints. If required search or experiment tools are unavailable, disclose the limitation instead of claiming that work was performed.
 
 Keep the chosen mode for the round. If its stopping condition is reached, report; do not silently restart under another mode. Reassess automatic selection at the next requested or already-authorized round, preserving any still-applicable user choice.
+
+## Bottleneck Direction and Method Ledger
+
+When bottleneck investigation is needed, read [Direction and Method Search](references/bottleneck-methods.md). Map major directions and concrete methods beneath them, then focus on one decisive method-level obstacle at a time. Stage 1 suspends a method only on an evidence-backed subjective viability estimate strictly below 5%. Only when all mapped methods have been suspended or rigorously excluded does stage 2 revisit them with a strictly-below-1% threshold. Untested, blocked, or uncertain methods are not eliminated. Estimates are resource- and scope-dependent judgments, never proofs of impossibility; preserve attempts, reasons, uncertainty, and reopening conditions in the ledger. Both stages remain within the current round and budget.
 
 ## Adaptive Reasoning Effort
 
@@ -126,20 +135,22 @@ Before final synthesis, verify that:
 
 ## Execution Pattern
 
-Use this default sequence, adapting only when dependencies require it:
+For solo execution, frame the question, gather evidence, make a concrete attempt, self-review material claims, and synthesize the result in the current agent. Follow the selected strategy, applicable adoption gate, stopping conditions, and archive procedure. Do not execute the delegation steps below.
 
-1. Agent 0 frames the problem, evidence standard, and milestones, selects the research mode under Research Mode Selection, and reads its procedure. Plan the initial per-subtask effort allocation under Adaptive Reasoning Effort. For long-running research, resolve the report-folder preference under Long-Running Research Archive before the first round.
+For four-agent execution, use this default sequence, adapting when dependencies require it:
+
+1. Agent 0 frames the problem, evidence standard, and milestones, selects the research mode under Research Mode Selection, and reads its procedure. Plan the initial per-subtask effort allocation under Adaptive Reasoning Effort. For long-running research, record the actual start time and resolve the project archive folder and existing round numbering under Long-Running Research Archive.
 2. Agent 1 and Agent 2 begin in parallel when Agent 2 can independently attack the core question; otherwise Agent 1 goes first and Agent 2 receives its ranked conjectures.
 3. Agent 3 first receives the original brief and evaluation criteria, forms its own review checklist and search plan, and only then receives the evidence map, Agent 2's work, and raw supporting artifacts. It never receives Agent 0's tentative conclusion before review.
 4. Agent 0 applies the adoption gate and adjudicates by evidence, not votes.
 5. Carry out the selected mode's work and repair-and-review iterations until its stopping condition or an explicit limit is reached. Reassess effort at meaningful phase boundaries without treating higher effort as a substitute for missing resources or a new method. Report the stopping reason and unresolved gaps.
-6. After a long-running research round, complete the English TeX archive procedure below when the user has enabled it.
+6. When continuous work exceeds 30 minutes of actual wall-clock time, complete the single-record Drive archive procedure below. This applies to solo and four-agent execution alike.
 
 ## Report to the User
 
 The first sentence of every end-of-round report to the user must identify the mode actually used, before any greeting, heading, result, or archive-status note. In Chinese, use exactly one of: "本次研究模式：启动研究。", "本次研究模式：标准研究。", or "本次研究模式：瓶颈研究。" In an English report, use "Research mode: Startup Research.", "Research mode: Standard Research.", or "Research mode: Bottleneck Research." Use an equivalent first sentence in another requested language.
 
-After that opening, give the useful answer and the compact target/requested/effective effort summary defined in [Reasoning Effort](references/reasoning-effort.md). Include a compact audit trail containing:
+After that opening, state the execution mode (solo, four-agent, or disclosed tool-unavailable fallback), give the useful answer and the compact target/requested/effective effort summary defined in [Reasoning Effort](references/reasoning-effort.md). In solo execution, use researcher/self-review labels throughout the following fields; never attribute work to nonexistent Agents 1-3. Include a compact audit trail containing:
 
 1. **Long-term objective**
 2. **This run's objective and mode**: whether the mode was user-specified or automatically selected, the selection basis, and the evidence-based stopping reason
@@ -154,26 +165,6 @@ Attribute substantive contributions to the correct agent. Do not dump internal t
 
 ## Long-Running Research Archive
 
-### Scope and Destination
+In both solo and four-agent execution, continuous work exceeding **30 minutes of actual wall-clock time** requires one complete Google Drive archive record for that round. Record the start time at the beginning of long work; do not split one run into half-hour rounds or count agent-hours. Continue project round numbering across dates and conversations. At the start of long work, read [Project Archives and Latest Progress](references/research-archive.md) and resolve the existing project folder and numbering. If no corresponding project folder exists, create one; an explicit user instruction not to upload takes precedence.
 
-This archive applies only to sustained research rounds: extended investigation, proof or falsification work, experiments, or scheduled research iterations undertaken to advance a project, whether or not they succeed. Ordinary questions, explanations, quick lookups, and brief follow-up answers do not trigger it, even when they use the four roles. Do not classify work by response length alone.
-
-Before the first applicable round, check the current project's instructions and prior user decisions for a Google Drive report folder or an explicit opt-out. If neither exists, ask whether the user wants to set a report folder and, if so, request its link or folder ID. A folder explicitly designated for these reports authorizes creating new progress reports there, subject to active permissions; an unrelated Drive link is not a report destination. Reuse this choice for subsequent rounds in that project. Do not infer one project's destination or opt-out for another project.
-
-If the user declines, skip report-file generation and upload, continue the research normally, and do not ask again unless the user reopens the choice. The normal conversational answer still applies. If no answer has arrived, continue otherwise authorized research without uploading and state that archiving is not configured. Retain the folder or opt-out in existing project/task context when supported; do not claim cross-session persistence without a supported mechanism. Never put personal folder IDs or account details in this public skill.
-
-### English TeX Report
-
-When archiving is enabled, Agent 0 must create and upload one standalone English `.tex` progress report at the end of every long-running research round, including rounds with negative results, unresolved gaps, or blocked progress. Do not substitute a chat summary, Google Doc, or PDF for the TeX source. Include the compact effort allocation and verification summary, disclosing unavailable controls or unknown effective settings.
-
-Place the overall research title first, then start the report body with the English research-mode sentence defined under Report to the User. Follow with the long-term objective, this round's objective, mode-selection basis and stopping reason, and Agent 3's progress assessment under the Progress Estimate rules. Include the baseline and changes since the previous round, substantive results with reproducible proofs or methods, counterexamples and failed routes, sources, review findings, the claim ledger and status changes, remaining gaps, and the next decisive steps. Clearly distinguish proved, conditional, conjectural, and unverified results, and disclose simulated reviewer passes. Record the round's start/end timestamps and timezone. Use a complete LaTeX document with escaped special characters and self-contained references; check its structure and compile when a suitable compiler is available. If compilation is unavailable, say so without claiming it compiled.
-
-### Filename and Upload
-
-Use exactly `<overall-title>-YYYY-MM-DD-<round>.tex`, for example `Erdos-Similarity-Problem-2026-09-05-2.tex`. Keep the overall project title stable across rounds, not the current subproblem's title; replace only characters unsuitable for a filename. Use the round's completion date in the user's configured timezone, or UTC with an explicit note when no timezone is available.
-
-The round is a positive integer starting at 1 each day for that project in its designated folder. Before choosing it, list all pages of matching reports for that title and date and reconcile them with any known rounds in the current project context; use the next unused round after the highest existing or recorded round, not the file count. Do not restart at 1 merely because this is a new conversation. Reuse the same round when retrying the same report.
-
-Create a new file without overwriting, editing, or deleting historical reports. Recheck names immediately before upload. Google Drive can contain duplicate names, so a filename is not an atomic reservation: after creation, check for a concurrent naming collision and, if necessary, renumber only this round's newly created file after relisting. If a collision cannot be resolved safely, disclose it. After an uncertain upload response, check for an already-created report before retrying to avoid duplicate reports.
-
-Use the available authorized Drive connector or supported API. Verify the created file's ID, parent folder, filename, and readable TeX content before reporting success; include its Drive link in the final response. If tools, access, or upload verification are unavailable, state the exact limitation and do not claim the report was saved. An upload failure is not a user opt-out: preserve the prepared report in an allowed accessible location when possible and report the remaining upload step. Do not switch folders, change sharing permissions, or bypass authorization.
+At an actionable checkpoint after crossing the threshold, create or update the round's single authoritative Markdown or Google Doc (or one ZIP containing the full report and necessary attachments). All subsequent saves and corrections use the same Drive file ID. Complete and verify it at the end, including unsuccessful rounds. Keep a persistent project-root `00_最新进展` or existing equivalent; initialize it with the current state, then update it only for major advances, withdrawals, or corrections. Read the full archive reference for record contents, numbering collisions, verification, and local fallback when Drive is unavailable. Return the round identity and verified Drive link; explicitly label an unuploaded local record.

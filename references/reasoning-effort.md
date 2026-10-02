@@ -1,6 +1,6 @@
 # Adaptive Reasoning Effort
 
-This is a task-sensitive allocation policy, not a claim of empirically optimal settings or a guarantee that a host can override effort. It applies across all three research modes and all four roles.
+This is a task-sensitive allocation policy, not a claim of empirically optimal settings or a guarantee that a host can override effort. It applies across all three research strategies, in solo and four-agent execution. Solo Research uses the current agent only: phase-specific targets do not authorize spawning agents or imply independently configurable runtimes.
 
 ## Choose a Target
 
@@ -45,7 +45,7 @@ Current configuration behavior is documented in the [official Codex subagent ref
 
 ## Report the Allocation
 
-After the mandatory first sentence identifying the research mode, include a compact effort summary in the conversational report and, when archiving is enabled, the English TeX report. For each distinct role/phase allocation, record the target, requested setting (or not configurable), verified effective setting (or unknown), and any material change, fallback, or reason. Group identical allocations to avoid a verbose activity log.
+After the mandatory first sentence identifying the research mode, include a compact effort summary in the conversational report and, when archiving is enabled, the single round archive record. For each distinct role/phase allocation, record the target, requested setting (or not configurable), verified effective setting (or unknown), and any material change, fallback, or reason. Group identical allocations to avoid a verbose activity log.
 
 For example: `Agent 2, core proof: target max; requested max; effective unknown (runtime metadata unavailable).` Never replace the required research-mode opening with the effort summary.
 
