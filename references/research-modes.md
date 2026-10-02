@@ -1,5 +1,7 @@
 # Research Modes
 
+These are shared research procedures, not separate solo and multi-agent method sets. Apply the same selection criteria, mathematical techniques, coverage requirements, verification checks, and stopping conditions in either execution mode. Solo saves coordination tokens by doing the responsibilities in one agent; it does not skip substantive steps. Four-agent execution distributes those responsibilities among agents. Keep future methodological changes here shared by both modes.
+
 Read the section for the selected mode. All modes retain the SKILL.md review, claim-ledger, progress-estimation, and authorization requirements. Broader exploration never lowers the evidentiary standard. Execution mode is separate: in Solo Research, one researcher performs these responsibilities and uses labeled self-review, with no delegation or simulated personas. All mentions of Agents 1–3 and simultaneous work below apply literally only to four-agent execution.
 
 ## Startup Research

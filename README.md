@@ -8,7 +8,9 @@ It is designed for complex scientific, technical, policy, strategic, historical,
 
 Say `不要 sub agent`, `单独工作`, or `work alone` to keep all work with the current agent. This takes precedence over the default four-agent workflow, even when delegation tools are available. No helpers, extra tasks, or simulated agent personas are created. Evidence gathering, substantive advancement, and explicitly labeled self-review remain required; self-review is not independent validation.
 
-Solo execution defaults to Standard Research and can also use Startup or Bottleneck Research as the question requires. Execution mode and research strategy are separate choices.
+Solo Research is intended to save the token overhead of delegation, repeated context transfer, inter-agent discussion, and duplicate reports. It shares **all mathematical methods and research rules** with four-agent execution: strategy selection, literature coverage, proofs and counterexamples, experiments, method IDs, the 5%/1% stages, verification criteria, effort policy, stopping rules, and archiving. Only agent count and the assignment/scheduling of responsibilities differ. The single researcher performs the same substantive review checks, honestly labeled self-review rather than independent-agent review.
+
+Both execution modes choose Startup, Standard, or Bottleneck Research by the same criteria; solo has no separate default or reduced method set. Method updates apply to both through the same shared instructions. Token savings come from removing coordination overhead, not dropping decisive tests, lowering mathematical standards, automatically lowering reasoning effort, or truncating required archives. Actual savings depend on the task and are not guaranteed.
 
 ```text
 $four-agent-research 不要 sub agent，单独研究这个问题；遵守逐轮归档和最新进展规则。

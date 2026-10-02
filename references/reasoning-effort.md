@@ -4,6 +4,8 @@ This is a task-sensitive allocation policy, not a claim of empirically optimal s
 
 ## Choose a Target
 
+Use the same effort-selection policy for solo and four-agent execution. Choosing solo to save tokens does not itself lower reasoning-effort targets or mathematical rigor; savings should come from reduced coordination and duplicated context. Explicit user effort and resource limits still take precedence.
+
 First honor explicit user model and effort choices, including an applicable user-pinned higher effort, and the run's resource limits. Otherwise use the following targets for the next bounded subtask:
 
 | Work | Target |
