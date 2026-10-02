@@ -97,6 +97,8 @@ Reports preserve the mode-first opening, then distinguish target, requested, and
 
 Map major directions and the concrete methods under each, then focus on one method's decisive obstacle at a time. Record actual tests, outcomes, assumptions, remaining gaps, subjective viability estimates, uncertainty, and reopening conditions.
 
+Every concrete method receives a stable ID: `method-001`, `method-002`, etc. Numbering is continuous within the project across directions, stages, rounds, and conversations. Reopening a method keeps its ID; new distinct methods receive the next number. Retired IDs are never reused. Use these IDs throughout the ledger and research records.
+
 - **Stage 1:** suspend a method when evidence supports a chance of resolving the scoped target **below 5%**. Sweep the mapped methods across all scoped directions.
 - **Stage 2:** only after every mapped method is suspended or rigorously excluded, revisit stage-1 methods using **below 1%** as the suspension threshold. Methods at 1–5% can still be pursued. Reassessment needs a meaningful new test or re-examination of the earlier evidence, not identical repetitions.
 
