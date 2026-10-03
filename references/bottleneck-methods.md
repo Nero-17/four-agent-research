@@ -4,6 +4,8 @@ Use this protocol when research reaches a documented bottleneck, in solo or four
 
 ## Map Directions Before Focusing
 
+Apply the shared core principle **清晰、明确、可记录、可平推**. For each substantive method attempt, preserve a compact chain in the existing records: `target and method ID → precise obstacle → concrete attempt → observed result/evidence → screening or outcome decision with reason → next action`. A negative result may clarify the route but must not be presented as a solved target. Before switching, suspending, reopening, or concentrating on a method, record the reason and next step; a status label alone is not an explanation. This trace should make the investigation easy to resume and communicate without creating additional report files or ceremonial bookkeeping.
+
 Maintain the project-level [Excel method tracker](method-workbook.md) alongside this ledger. Each method has one current row, including whether it has entered initial-screening suspension; preserve previous suspension events when entering rescreening.
 
 Use [Shared Research Identifiers](research-identifiers.md) throughout this ledger, including `direction-000`, `problem-000`, `gap-000`, and `experiment-000` where applicable, while retaining the `method-001` starting rule below.

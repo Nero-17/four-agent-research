@@ -4,7 +4,12 @@ A reusable Codex skill for rigorous research and reasoning, with four-agent exec
 
 It is designed for complex scientific, technical, policy, strategic, historical, and other questions where a plausible answer is not enough. The workflow tracks material claims, tests conjectures, searches for disconfirming evidence, and distinguishes verified progress from effort.
 
+## Core Principle / 核心原则
+
+**清晰、明确、可记录、可平推。** Screening rules, identifiers, status tracking, and archives all serve one purpose: advancing the problem through concrete, traceable steps that can be explained and resumed. Keep the chain `目标与方法 → 当前障碍 → 实际尝试 → 结果与证据 → 判定及理由 → 下一步` in the existing records. Record negative outcomes and changes of direction as well as successes; consult that history before repeating work. Bookkeeping alone is not progress, and this principle does not promise that every problem can be solved. Keep records sufficient for handoff without duplicating reports or logging every thought. Solo and four-agent execution share this principle.
+
 ## Solo Research / 单人研究
+
 
 Say `不要 sub agent`, `单独工作`, or `work alone` to keep all work with the current agent. This takes precedence over the default four-agent workflow, even when delegation tools are available. No helpers, extra tasks, or simulated agent personas are created. Evidence gathering, substantive advancement, and explicitly labeled self-review remain required; self-review is not independent validation.
 

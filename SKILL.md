@@ -5,6 +5,14 @@ description: Conduct rigorous complex research with evidence mapping, concrete a
 
 # Four-Agent Research
 
+## Core Principle: 清晰、明确、可记录、可平推
+
+The purpose of the screening and tracking rules is to advance a research problem step by step in a clear, explicit, recorded way. At every meaningful decision, make it possible to identify the current target, focal method, actual attempt, evidence obtained, resulting judgment, and next concrete step. Keep this trail in the existing ledger, workbook, and round record so the user or a later researcher can understand and continue the work without reconstructing scattered conversation.
+
+IDs, screening thresholds, outcome statuses, and archives serve this progression; completing fields or changing labels is not itself research progress. Record substantive attempts and decisions at actionable checkpoints, including negative outcomes, without logging every thought or duplicating whole reports. Before resuming or repeating an attempt, consult the record and state what new evidence or changed condition makes the next attempt useful. If the record is incomplete, mark the gap instead of inventing a history. "可平推" means a traceable sequence of concrete next steps, not a promise that every problem is solvable or progress must be linear. Apply this principle equally to solo and four-agent execution while retaining all existing evidence standards and required records.
+
+## Execution Mode
+
 Select the execution mode **before any delegation**. Explicit instructions such as "不要 sub agent", "不要 agent", "单独工作", "单人研究", "no subagents", or "work alone" select **Solo Research / 单人研究**. This overrides every delegation, parallel-work, and independent-agent requirement below, including when subagent tools are available. Keep this choice until the user changes it; never spawn helpers, ask another task to do the work, or create conversations to bypass it.
 
 In Solo Research, the current agent performs the same research responsibilities: frame the question, gather evidence, develop and falsify arguments, check the result, and report it. Do not simulate four personas or produce fictional agent contributions. Read later role descriptions as responsibilities of this one researcher, not instructions to instantiate agents. Replace Agent 3 review and progress assessment with explicitly labeled **self-review**; this is not independent validation. Apply the same substantive adoption checks through documented self-review and qualify unchecked claims. Select Startup, Standard, or Bottleneck Research by the same rules used in four-agent execution; solo has no separate strategy default.
