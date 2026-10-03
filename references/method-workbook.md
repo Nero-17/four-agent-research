@@ -16,7 +16,8 @@ The `方法状态` sheet has exactly one current row per concrete method, keyed 
 | 目标问题或猜想 | Target IDs and short scope |
 | 当前状态 | Current method disposition from the shared method ledger |
 | 当前阶段 | 未开始 / 第一阶段 / 第二阶段 |
-| 第一阶段判定 | 未评估 / 继续 / 放弃 / 不确定 / 资源受阻 / 已证明该范围不可行 |
+| 第一阶段判定 | 未评估 / 第一阶段通过 / 第一阶段放弃 / 不确定 / 资源受阻 / 已证明该范围不可行 |
+| 当前单点推进 | 是 / 否; at most one current focal method per coordinated research run |
 | 已进入第一阶段放弃 | 是 / 否 / 未知; whether a documented stage-1 suspension has occurred |
 | 首次第一阶段放弃轮次 | The `round-...` of the first recorded suspension; otherwise blank or 未知 |
 | 第二阶段判定 | 未进入 / 待重审 / 继续 / 放弃 / 不确定 / 资源受阻 / 已证明该范围不可行 |
@@ -34,6 +35,7 @@ Use a second sheet, `状态历史`, inside the same workbook for concise transit
 
 - Here 第一阶段/第二阶段 mean the 5%/1% method-screening stages, not research rounds. A `round-...` may contain work from either or both stages.
 - Stage-1 放弃 requires the shared evidence-backed **strictly below 5%** criterion; stage-2 放弃 requires **strictly below 1%**. Thresholds, uncertainty rules, and the all-methods stage-transition gate remain those in [Direction and Method Search](bottleneck-methods.md).
+- Record a completed, favorable stage-1 assessment as `第一阶段通过`, with current disposition `PASSED_STAGE_1`. Apply the shared pass criterion (at least 5%, or a range wholly at/above 5%, plus a feasible next attempt); neither an unchecked method nor `已进入第一阶段放弃 = 否` is sufficient. Mark the selected passed method `当前单点推进 = 是`; other passed methods remain queued. Keep assessment and focus separate, and preserve pass-to-suspension or reopening transitions in 状态历史. When adopting these labels in an existing workbook, map old `继续` entries to `第一阶段通过` only after checking their evidence; do not invent past passes or erase old decisions.
 - The 已进入 columns record historical entry, not the current disposition. Reopening a stage-1-suspended method in stage 2 leaves `已进入第一阶段放弃 = 是`, while 当前状态 and 第二阶段判定 show current work. A correction remains visible in 状态历史 and the current explanation. `否` alone does not mean viable or reviewed: 未评估/不确定/资源受阻 must remain explicit. Incomplete legacy history uses 未知.
 - Proven impossibility in scope is a separate decision, not a fabricated below-threshold estimate. Record its proof and do not mark the suspension-history flag 是 unless a suspension actually occurred.
 - Read the existing workbook before editing. Update the matching row when a method is added, assessed, suspended, reopened, refined, or corrected; append a history entry for actual decision/status transitions. At actionable checkpoints and the end of a research run, save pending changes to the same file ID, even if there is no major breakthrough. Unchanged data does not require repeated writes. The 30-minute threshold governs mandatory round reports, not whether method rows should be maintained.
@@ -41,7 +43,7 @@ Use a second sheet, `状态历史`, inside the same workbook for concise transit
 
 ## Presentation and Verification
 
-Use an Excel table with filters, frozen header and ID/name columns, readable column widths, wrapped explanations, and validated status choices. Highlight stage-1 suspension, stage-2 suspension, active work, and uncertainty distinctly, while retaining explicit text so color is not the sole signal. Keep method IDs and round IDs as text. Do not convert unknown estimates into numeric zero or automatically infer suspension from an estimate without a recorded decision.
+Use an Excel table with filters, frozen header and ID/name columns, readable column widths, wrapped explanations, and validated status choices. Highlight 第一阶段通过 in green and distinguish the focal method, stage-1 suspension, stage-2 suspension, and uncertainty, while retaining explicit text so color is not the sole signal. Keep method IDs and round IDs as text. Do not convert unknown estimates into numeric zero or automatically infer a pass or suspension from an estimate without a recorded decision.
 
 Before reporting success, reopen/read the saved workbook and verify that it is valid `.xlsx`, method IDs are unique, every currently recorded method has a row, key stage flags agree with the ledger/history, and changed rows and links were preserved. After upload, verify the Drive file ID, project parent, and accessible saved content. Include the workbook's Drive link when first created or relevant to a status request. If saving/uploading fails, keep pending changes locally and explicitly say 尚未上传; reconcile them on later authorized continuation.
 

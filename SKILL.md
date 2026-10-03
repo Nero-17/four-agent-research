@@ -54,6 +54,8 @@ Keep the chosen mode for the round. If its stopping condition is reached, report
 
 ## Bottleneck Direction and Method Ledger
 
+Methods that survive substantive stage-1 assessment receive `PASSED_STAGE_1` / **第一阶段通过** under the shared 5% criterion. Prioritize concentrated advancement of one passed method at a time, with other passed methods queued; do not keep broadly screening merely to finish a list. Track the selected method separately from its assessment and reassess on new evidence. Unassessed, uncertain, or resource-blocked methods are not automatic passes. Apply this rule equally to solo and four-agent execution and show the pass/focus explicitly in the Excel tracker.
+
 When concrete methods are first recorded, read [Persistent Excel Method Tracker](references/method-workbook.md). Create or reuse one project-root `01_方法状态.xlsx`, with one row per method ID, current disposition, explicit first-stage abandonment flag, second-stage decision, evidence, and related round IDs. Update the same workbook and Drive file ID as methods change; preserve transition history within it. This actual Excel tracker is shared by solo and four-agent execution and complements the round archive and latest-progress file.
 
 Number every concrete method `method-001`, `method-002`, etc. in one project-wide sequence across directions. Continue existing numbering across rounds and conversations; keep the same ID when suspending or reopening a method, and never reuse retired IDs. Use these IDs in research records and reports; see the reference below for variants and legacy labels.
