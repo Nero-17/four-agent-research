@@ -8,13 +8,13 @@ It is designed for complex scientific, technical, policy, strategic, historical,
 
 Say `不要 sub agent`, `单独工作`, or `work alone` to keep all work with the current agent. This takes precedence over the default four-agent workflow, even when delegation tools are available. No helpers, extra tasks, or simulated agent personas are created. Evidence gathering, substantive advancement, and explicitly labeled self-review remain required; self-review is not independent validation.
 
-Solo Research is intended to save the token overhead of delegation, repeated context transfer, inter-agent discussion, and duplicate reports. It shares **all mathematical methods and research rules** with four-agent execution: strategy selection, literature coverage, proofs and counterexamples, experiments, method IDs, the 5%/1% stages, verification criteria, effort policy, stopping rules, and archiving. Only agent count and the assignment/scheduling of responsibilities differ. The single researcher performs the same substantive review checks, honestly labeled self-review rather than independent-agent review.
+Solo Research is intended to save the token overhead of delegation, repeated context transfer, inter-agent discussion, and duplicate reports. It shares **all mathematical methods and research rules** with four-agent execution: strategy selection, literature coverage, proofs and counterexamples, experiments, method IDs, the 5%/1% screening passes and outcome stages, verification criteria, effort policy, stopping rules, and archiving. Only agent count and the assignment/scheduling of responsibilities differ. The single researcher performs the same substantive review checks, honestly labeled self-review rather than independent-agent review.
 
 Both execution modes choose Startup, Standard, or Bottleneck Research by the same criteria; solo has no separate default or reduced method set. Method updates apply to both through the same shared instructions. Token savings come from removing coordination overhead, not dropping decisive tests, lowering mathematical standards, automatically lowering reasoning effort, or truncating required archives. Actual savings depend on the task and are not guaranteed.
 
 ```text
 $four-agent-research 不要 sub agent，单独研究这个问题；遵守逐轮归档和最新进展规则。
-$four-agent-research 单人瓶颈研究：先整理大方向及各自方法，逐项尝试，按 5% / 1% 两阶段规则推进。
+$four-agent-research 单人瓶颈研究：先整理大方向及各自方法，逐项尝试，按 5% / 1% 初筛与复筛规则推进。
 ```
 
 ## Roles (Four-Agent Execution)
@@ -95,21 +95,27 @@ This is an adaptive policy, **not a hard runtime override**. The skill instructs
 
 Reports preserve the mode-first opening, then distinguish target, requested, and verified effective effort, including unknown values and compatibility fallbacks. See [Reasoning Effort](references/reasoning-effort.md) for the decision procedure, runtime boundaries, and examples. These are research-workflow defaults, not a claim of experimentally optimal effort settings.
 
-## Bottleneck Search: Directions, Methods, and Two Stages
+## Bottleneck Search: Screening and Outcomes
 
-Map major directions and the concrete methods under each, then focus on one method's decisive obstacle at a time. Record actual tests, outcomes, assumptions, remaining gaps, subjective viability estimates, uncertainty, and reopening conditions.
+Map major directions and concrete methods, numbered `method-001` onward. Keep three independent concepts:
 
-Every concrete method receives a stable ID: `method-001`, `method-002`, etc. Numbering is continuous within the project across directions, stages, rounds, and conversations. Reopening a method keeps its ID; new distinct methods receive the next number. Retired IDs are never reused. Use these IDs throughout the ledger and research records.
+| Dimension | Names | Meaning |
+| --- | --- | --- |
+| Research run | `round-000`, `round-001`, ... | One continuous research session |
+| Method screening | 初筛 / 复筛 | Initial screening suspends below 5%; rescreening revisits suspended methods with a below-1% threshold |
+| Outcome stage | 第一阶段通过 / 第二阶段通过 | Eligible for focused advancement / an actual verified substantive global conclusion obtained |
 
-- **Stage 1:** suspend a method when evidence supports a chance of resolving the scoped target **below 5%**. Sweep the mapped methods across all scoped directions.
-- **第一阶段通过 / `PASSED_STAGE_1`:** after substantive assessment, a method with a defensible estimate at least 5% (or a range wholly at/above 5%) and a feasible next attempt passes. Concentrate on one passed method's decisive gap; queue other passed methods. Do not continue broad screening merely to finish a list while a passed method offers useful focused advancement. Unassessed, uncertain, and resource-blocked entries are not automatically passed. The Excel tracker shows `第一阶段通过` and a separate `当前单点推进` flag, retaining all assessment changes in its history.
-- **Stage 2:** only after every mapped method is suspended or rigorously excluded, revisit stage-1 methods using **below 1%** as the suspension threshold. Methods at 1–5% can still be pursued. Reassessment needs a meaningful new test or re-examination of the earlier evidence, not identical repetitions.
+Rescreening begins only when every mapped method has initial-screening suspension or rigorous exclusion. Unknown, untested, blocked, or downstream-failed methods do not automatically satisfy that gate. Passing the applicable screen supports 第一阶段通过. Concentrate on one eligible method and queue others.
 
-These are subjective feasibility thresholds under stated assumptions and resources, not measured probabilities or proofs of impossibility. Exact threshold values are not below threshold; uncertain, untested, or resource-blocked methods cannot count as eliminated. Exhausting a scoped map does not prove that all possible approaches fail. Both stages respect the current budget and round identity. See [Direction and Method Search](references/bottleneck-methods.md).
+After further investigation, an evidence-backed probability **below 5% of producing a substantive global conclusion for the final objective** means **第一阶段通过但后续失败**. Record the grounds and reopening conditions. This is a separate assessment from screening viability; uncertainty or resource shortage is not automatic failure.
+
+**第二阶段通过 requires an already obtained, clear, checkable global conclusion**, with a result ID, proof/verification record, explicit scope, and material contribution to the final objective. A probability at or above 5% supports continued work only. Local progress, an unproved route, or finite numerical evidence alone does not establish a global mathematical result. A substantive global result need not solve the entire final objective; state the remaining gap.
+
+Screening and outcome fields never overwrite one another: 复筛通过 can coexist with 第一阶段通过但后续失败. New evidence addressing the downstream failure is needed before restarting concentrated advancement; the 1% screening threshold does not waive the separate downstream criterion. Preserve old labels as aliases, including old 第一阶段放弃 → 初筛放弃 and 第二阶段放弃 → 复筛放弃. See [Direction and Method Search](references/bottleneck-methods.md).
 
 ## Standard Research IDs
 
-The project also maintains an actual `01_方法状态.xlsx` in its Drive root. Each method (`method-001` onward) occupies one row with its name, direction, current status, explicit **已进入第一阶段放弃** flag, first suspension round, second-stage decision, feasibility assessment, evidence, and next step. A history sheet preserves transitions: reopening a method in stage 2 does not erase its stage-1 suspension. Update the same workbook/file ID when methods change, independently of whether the round produced a breakthrough. This tracker is shared by both execution modes and complements the complete round archive. See [Persistent Excel Method Tracker](references/method-workbook.md).
+The project maintains `01_方法状态.xlsx` in its Drive root, with one row per method and separate **筛选轮次、筛选判定、成果状态、当前单点推进** fields. It records historical initial/rescreening suspensions, separate viability estimates, actual global conclusion IDs and verification links, and a transition-history sheet. Update the same file ID and preserve legacy evidence during schema migration. Solo and four-agent execution share this tracker. See [Persistent Excel Method Tracker](references/method-workbook.md).
 
 Both execution modes automatically assign stable project-wide identifiers:
 

@@ -14,15 +14,17 @@ The `方法状态` sheet has exactly one current row per concrete method, keyed 
 | 方法名称 | Short readable name |
 | 方向编号 | Related direction ID |
 | 目标问题或猜想 | Target IDs and short scope |
-| 当前状态 | Current method disposition from the shared method ledger |
-| 当前阶段 | 未开始 / 第一阶段 / 第二阶段 |
-| 第一阶段判定 | 未评估 / 第一阶段通过 / 第一阶段放弃 / 不确定 / 资源受阻 / 已证明该范围不可行 |
-| 当前单点推进 | 是 / 否; at most one current focal method per coordinated research run |
-| 已进入第一阶段放弃 | 是 / 否 / 未知; whether a documented stage-1 suspension has occurred |
-| 首次第一阶段放弃轮次 | The `round-...` of the first recorded suspension; otherwise blank or 未知 |
-| 第二阶段判定 | 未进入 / 待重审 / 继续 / 放弃 / 不确定 / 资源受阻 / 已证明该范围不可行 |
-| 已进入第二阶段放弃 | 是 / 否 / 未知; whether a documented stage-2 suspension has occurred |
-| 可行性估计与不确定性 | Subjective estimate or range, with assumptions/resource horizon; 未评估 where unknown |
+| 筛选轮次 | 未开始 / 初筛 / 复筛; distinct from `round-...` |
+| 筛选判定 | 未评估 / 通过 / 放弃 / 不确定 / 资源受阻 / 已证明该范围不可行; scoped to 筛选轮次 |
+| 成果状态 | 待评估 / 第一阶段通过 / 第一阶段通过，正在推进 / 第一阶段通过，全局结论待判定 / 第一阶段通过，推进受阻 / 第一阶段通过但后续失败 / 第二阶段通过 |
+| 当前单点推进 | 是 / 否; at most one focal method per coordinated research run |
+| 已进入初筛放弃 | 是 / 否 / 未知; historical initial-screening suspension |
+| 首次初筛放弃轮次 | First relevant `round-...`; blank or 未知 if appropriate |
+| 已进入复筛放弃 | 是 / 否 / 未知; historical rescreening suspension |
+| 筛选可行性估计与不确定性 | Screening event, estimate/range, assumptions and resource horizon |
+| 全局结论可行性估计与不确定性 | Separate downstream event, estimate/range, assumptions and horizon; 未评估 if unknown |
+| 全局结论及编号 | Precise actual global result and ID; do not fill with a promised result |
+| 全局结论核查记录 | Proof/verification link, assumptions, review outcome, and relevance to the final objective |
 | 判定依据与精确障碍 | Concrete evidence and smallest remaining gap, not just a percentage |
 | 下一步或重启条件 | Discriminating test or evidence needed to reopen |
 | 最近更新轮次 | Most recent `round-...` changing this row |
@@ -33,18 +35,20 @@ Use a second sheet, `状态历史`, inside the same workbook for concise transit
 
 ## State Meaning and Update Rules
 
-- Here 第一阶段/第二阶段 mean the 5%/1% method-screening stages, not research rounds. A `round-...` may contain work from either or both stages.
-- Stage-1 放弃 requires the shared evidence-backed **strictly below 5%** criterion; stage-2 放弃 requires **strictly below 1%**. Thresholds, uncertainty rules, and the all-methods stage-transition gate remain those in [Direction and Method Search](bottleneck-methods.md).
-- Record a completed, favorable stage-1 assessment as `第一阶段通过`, with current disposition `PASSED_STAGE_1`. Apply the shared pass criterion (at least 5%, or a range wholly at/above 5%, plus a feasible next attempt); neither an unchecked method nor `已进入第一阶段放弃 = 否` is sufficient. Mark the selected passed method `当前单点推进 = 是`; other passed methods remain queued. Keep assessment and focus separate, and preserve pass-to-suspension or reopening transitions in 状态历史. When adopting these labels in an existing workbook, map old `继续` entries to `第一阶段通过` only after checking their evidence; do not invent past passes or erase old decisions.
-- The 已进入 columns record historical entry, not the current disposition. Reopening a stage-1-suspended method in stage 2 leaves `已进入第一阶段放弃 = 是`, while 当前状态 and 第二阶段判定 show current work. A correction remains visible in 状态历史 and the current explanation. `否` alone does not mean viable or reviewed: 未评估/不确定/资源受阻 must remain explicit. Incomplete legacy history uses 未知.
-- Proven impossibility in scope is a separate decision, not a fabricated below-threshold estimate. Record its proof and do not mark the suspension-history flag 是 unless a suspension actually occurred.
+- Keep 筛选轮次, 筛选判定, 成果状态, and 当前单点推进 separate. 初筛/复筛 use the 5%/1% suspension criteria; `round-...` identifies a continuous research run; 第一阶段/第二阶段 describe outcomes. Apply [Direction and Method Search](bottleneck-methods.md) for all thresholds, transition gates, and evidence requirements.
+- After positive screening, mark the first outcome stage passed and concentrate on one eligible method. Further investigation giving a defensible global-conclusion probability below 5% yields 第一阶段通过但后续失败. Record its evidence, retain the screening decision, and release it from focus. Unknown/straddling estimates remain pending; resource constraints alone are blockers.
+- 第二阶段通过 requires an actual verified global conclusion. Verify the conclusion ID, proof or appropriate verification link, explicit scope, and substantive effect on the final objective before assigning it. No probability formula, rescreening pass, or absence of a failure flag can automatically produce this status.
+- A row may read 复筛 / 通过 / 第一阶段通过但后续失败. Do not overwrite the outcome or select it for full advancement just because the 1% screen passed; reopening requires evidence addressing the downstream failure.
+- The 已进入 columns record historical suspensions and remain true when methods reopen. Preserve transitions and corrections in 状态历史, including their dimension (screening or outcome), event, evidence, and related round. Unknown legacy history remains 未知.
+- For existing workbooks, migrate the schema in the same file ID without losing history: old 当前阶段 becomes 筛选轮次; old 第一阶段判定 and 第二阶段判定 become their corresponding initial/rescreening records. Rename the old suspension flags to 初筛/复筛 flags, retaining aliases in history. Keep supported historical 第一阶段通过 as an outcome, but never interpret old 第二阶段判定 or a rescreening pass as 第二阶段通过. Mark any unmappable data pending instead of guessing. Do not rename historical round archives.
+- Proven impossibility is separate from a probabilistic screening suspension; preserve the proof and do not invent a suspension event.
 - Read the existing workbook before editing. Update the matching row when a method is added, assessed, suspended, reopened, refined, or corrected; append a history entry for actual decision/status transitions. At actionable checkpoints and the end of a research run, save pending changes to the same file ID, even if there is no major breakthrough. Unchanged data does not require repeated writes. The 30-minute threshold governs mandatory round reports, not whether method rows should be maintained.
 - In four-agent execution the lead coordinates workbook writes; subagents supply changes rather than racing to overwrite it. Before saving after another conversation may have edited it, reread and reconcile by method ID; do not silently discard concurrent updates.
 
 ## Presentation and Verification
 
-Use an Excel table with filters, frozen header and ID/name columns, readable column widths, wrapped explanations, and validated status choices. Highlight 第一阶段通过 in green and distinguish the focal method, stage-1 suspension, stage-2 suspension, and uncertainty, while retaining explicit text so color is not the sole signal. Keep method IDs and round IDs as text. Do not convert unknown estimates into numeric zero or automatically infer a pass or suspension from an estimate without a recorded decision.
+Use an Excel table with filters, frozen header and ID/name columns, readable column widths, wrapped explanations, and validated status choices. Distinguish first-outcome-stage passes, verified 第二阶段通过, 第一阶段通过但后续失败, the focal method, screening suspensions, and uncertainty, while retaining explicit text so color is not the sole signal. Keep method IDs and round IDs as text. Do not convert unknown estimates into numeric zero or automatically infer a pass or suspension from an estimate without a recorded decision.
 
-Before reporting success, reopen/read the saved workbook and verify that it is valid `.xlsx`, method IDs are unique, every currently recorded method has a row, key stage flags agree with the ledger/history, and changed rows and links were preserved. After upload, verify the Drive file ID, project parent, and accessible saved content. Include the workbook's Drive link when first created or relevant to a status request. If saving/uploading fails, keep pending changes locally and explicitly say 尚未上传; reconcile them on later authorized continuation.
+Before reporting success, reopen/read the saved workbook and verify that it is valid `.xlsx`, method IDs are unique, every currently recorded method has a row, screening and outcome fields agree with the ledger/history and every 第二阶段通过 has actual verification evidence, and changed rows and links were preserved. After upload, verify the Drive file ID, project parent, and accessible saved content. Include the workbook's Drive link when first created or relevant to a status request. If saving/uploading fails, keep pending changes locally and explicitly say 尚未上传; reconcile them on later authorized continuation.
 
 The workbook is the project's current method-status view. The full round archive remains the authoritative account of that round's reasoning and evidence. Reference the same method IDs in both and resolve discrepancies before claiming they are synchronized; this living tracker does not replace the single complete round report.
